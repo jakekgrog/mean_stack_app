@@ -1,1 +1,1 @@
-"# MEAN Stack Application Test"
+# MEAN Stack Application Test
