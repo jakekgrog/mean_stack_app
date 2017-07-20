@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/r-dog/mean_stack_app#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "mongoose": "^4.11.2",
     "nodemon": "^1.11.0"
