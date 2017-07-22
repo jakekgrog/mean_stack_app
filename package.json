@@ -23,6 +23,7 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
     "express": "^4.15.3",
     "mongoose": "^4.11.2",
     "nodemon": "^1.11.0"

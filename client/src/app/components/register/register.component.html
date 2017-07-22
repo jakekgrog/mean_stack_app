@@ -1,26 +1,34 @@
 <h1 class="page-header">Register Page</h1>
 
+<div class="row show-hide-message">
+    <div [ngClass]="messageClass" >
+        {{ message }}
+    </div>
+</div>
+
 <form [formGroup]="form" (submit)="onRegisterSubmit()" >
     <div class="form-group">
         <label for="username">Username</label>
-        <div [ngClass]="{'has-error': (form.controls.username.errors && form.controls.username.dirty), 'has-success': !form.controls.username.errors}">
-            <input type="text" name="username" class="form-control" autocomplete="off" placeholder="*Username"  formControlName="username">
+        <div [ngClass]="{'has-error': (form.controls.username.errors && form.controls.username.dirty) || (!usernameValid && form.controls.username.dirty), 'has-success': (!form.controls.username.errors && usernameValid)}">
+            <input type="text" name="username" class="form-control" autocomplete="off" placeholder="*Username"  formControlName="username" (blur)="checkUsername()">
             <ul class="help-block">
                 <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">This field is required</li>
                 <li *ngIf="form.controls.username.errors?.minlength || form.controls.username.errors?.maxlength">Minimum Characters: 3, Maximum Characters: 15</li>
                 <li *ngIf="form.controls.username.errors?.validateUsername && form.controls.username.dirty">Username must not contain any special characters</li>
+                <li *ngIf="usernameMessage" >{{ usernameMessage }}</li>
             </ul>
         </div>
     </div>
 
     <div class="form-group">
         <label for="email">Email</label>
-        <div [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty), 'has-success': !form.controls.email.errors}" >
-            <input type="text" name="email" class="form-control" autocomplete="off" placeholder="*Email" formControlName="email">
+        <div [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty) || (!emailValid && form.controls.email.dirty), 'has-success': (!form.controls.email.errors && emailValid)}" >
+            <input type="text" name="email" class="form-control" autocomplete="off" placeholder="*Email" formControlName="email" (blur)="checkEmail()">
             <ul class="help-block">
                 <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">This field is required</li>
                 <li *ngIf="(form.controls.email.errors?.minlength || form.controls.email.errors?.maxlength)">Minimum Characters: 5, Maximum Characters: 30</li>
                 <li *ngIf="form.controls.email.errors?.validateEmail && form.controls.email.dirty">This must be a valid email</li>
+                <li *ngIf="emailMessage" >{{ emailMessage }}</li>
             </ul>
         </div>
     </div>
@@ -28,7 +36,7 @@
     <div class="form-group">
         <label for="password">Password</label>
         <div [ngClass]="{'has-error': (form.controls.password.errors && form.controls.password.dirty), 'has-success': !form.controls.password.errors}">
-            <input type="text" name="password" class="form-control" autocomplete="off" placeholder="*Password" formControlName="password">
+            <input type="password" name="password" class="form-control" autocomplete="off" placeholder="*Password" formControlName="password">
             <ul class="help-block">
                 <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">This field is required</li>
                 <li *ngIf="form.controls.password.errors?.minlength || form.controls.password.errors?.maxlength">Minimum Characters: 8, Maximum Characters: 35</li>
@@ -40,7 +48,7 @@
     <div class="form-group">
         <label for="confirm">Confirm Password</label>
         <div [ngClass]="{'has-error': (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPasswords && form.controls.confirm.dirty), 'has-success': !form.controls.confirm.errors && !form.errors?.matchingPasswords}">
-            <input type="text" name="confirm" class="form-control" autocomplete="off" placeholder="*Confirm Password" formControlName="confirm">
+            <input type="password" name="confirm" class="form-control" autocomplete="off" placeholder="*Confirm Password" formControlName="confirm">
             <ul class="help-block">
                 <li *ngIf="form.controls.confirm.errors?.required && form.controls.confirm.dirty">This field is required</li>
                 <li *ngIf="form.errors?.matchingPasswords && form.controls.confirm.dirty">Passwords do not match</li>
@@ -48,5 +56,5 @@
         </div>
     </div>
 
-    <input [disabled]="!form.valid" type="submit" class="btn btn-success" value="Register" >
+    <input [disabled]="!form.valid || processing || !usernameValid || !emailValid" type="submit" class="btn btn-success" value="Register" >
 </form>
