@@ -9,6 +9,7 @@ export class NotAuthGuard implements CanActivate {
         private router: Router,
     ) { }
 
+    //check if user is logged in. If so, redirect
     canActivate() {
         if (this.authService.loggedIn()) {
             this.router.navigate(['/']);

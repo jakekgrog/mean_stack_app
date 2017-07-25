@@ -95,12 +95,14 @@ const passwordValidators = [
     }
 ];
 
+//defines a user model
 const userSchema = new Schema({
     email: { type: String, required: true, unique: true, lowercase: true, validate: emailValidators },
     username: { type: String, required: true, unique: true, lowercase: true, validate: usernameValidators },
     password: { type: String, required: true, validate: passwordValidators }
 });
 
+//checks if password is hashed. If not, hash.
 userSchema.pre('save', function(next) {
     if (!this.isModified('password'))
         return next();

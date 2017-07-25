@@ -16,6 +16,7 @@ export class AuthGuard implements CanActivate {
         private router: Router,
     ) { }
 
+    //Check if user is logged if. If not, redirect
     canActivate(
         router: ActivatedRouteSnapshot,
         state: RouterStateSnapshot,

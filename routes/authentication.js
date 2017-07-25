@@ -4,6 +4,7 @@ const config = require('../config/database');
 
 module.exports = (router) => {
 
+    //Back-end registration authentication
     router.post('/register', (req, res) => {
         if (!req.body.email) {
             res.json({ success: false, message: 'You must provide an email'});
@@ -53,6 +54,7 @@ module.exports = (router) => {
         
     });
 
+    //Get user email
     router.get('/checkEmail/:email', (req, res) => {
         if (!req.params.email) {
             res.json({ success: false, message: 'Email was not provided' })
@@ -71,6 +73,7 @@ module.exports = (router) => {
         }
     });
 
+    //check user username
     router.get('/checkUsername/:username', (req, res) => {
         if (!req.params.username) {
             res.json({ success: false, message: 'Username was not provided' })
@@ -89,6 +92,7 @@ module.exports = (router) => {
         }
     });
 
+    //Login Authentication
     router.post('/login', (req, res) => {
         if (!req.body.username) {
             res.json({ success: false, message: 'Username was not provided' });
@@ -134,6 +138,7 @@ module.exports = (router) => {
         }
     });
 
+    //Profile route Authentication
     router.get('/profile', (req, res) => {
         User.findOne({ _id: req.decoded.userId }).select('username email').exec((err, user) => {
             if (err) {
