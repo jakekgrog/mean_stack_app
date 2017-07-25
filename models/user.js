@@ -3,6 +3,7 @@ mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt-nodejs');
 
+//check our if our email exists and is within 5-30 chars.
 let emailLengthChecker = (email) => {
     if (!email) {
         return false;
@@ -15,6 +16,7 @@ let emailLengthChecker = (email) => {
     }
 };
 
+//check if our email is valid with regex. (At least one Upper,Symbol & Number / 8-35 characters )
 let validEmailChecker = (email) => {
     if (!email) {
         return false;
@@ -23,6 +25,7 @@ let validEmailChecker = (email) => {
         return regex.test(email);
     }
 };
+
 
 const emailValidators = [
     {
@@ -35,6 +38,7 @@ const emailValidators = [
     }
 ];
 
+//check our usename isn't blank / 3-15 chars
 let usernameLengthChecker = (username) => {
     if (!username) {
         return false;
@@ -45,6 +49,7 @@ let usernameLengthChecker = (username) => {
     }
 };
 
+//check username against some simple regex
 let validUsernameChecker = (username) => {
     if  (!username) {
         return false;
@@ -54,6 +59,7 @@ let validUsernameChecker = (username) => {
     }
 };
 
+//username validators use our validator functions / spit out message on failure.
 const usernameValidators = [
     {
         validator: usernameLengthChecker,
@@ -65,6 +71,7 @@ const usernameValidators = [
     },
 ];
 
+//check our password is 8 - 35 chars
 let passwordLengthChecker = (password) => {
     if (!password) {
         return false;
@@ -75,6 +82,7 @@ let passwordLengthChecker = (password) => {
     }
 };
 
+//check our password isn't empty and uses a cap, a symbol, a number
 let validPasswordChecker = (password) => {
     if (!password) {
         return false;
@@ -84,6 +92,7 @@ let validPasswordChecker = (password) => {
     }
 }
 
+//password validators using password functions
 const passwordValidators = [
     {
         validator: passwordLengthChecker,
@@ -95,11 +104,13 @@ const passwordValidators = [
     }
 ];
 
+//db schema with email/username/password fields.
 const userSchema = new Schema({
     email: { type: String, required: true, unique: true, lowercase: true, validate: emailValidators },
     username: { type: String, required: true, unique: true, lowercase: true, validate: usernameValidators },
     password: { type: String, required: true, validate: passwordValidators }
 });
+
 
 userSchema.pre('save', function(next) {
     if (!this.isModified('password'))

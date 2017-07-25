@@ -5,9 +5,10 @@ import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
 
+//app routing linking paths to components
 const appRoutes: Routes = [
-    { 
-        path: '', 
+    {
+        path: '',
         component: HomeComponent
     },
     {
@@ -18,8 +19,10 @@ const appRoutes: Routes = [
         path: 'register',
         component: RegisterComponent
     },
+    //anything that isn't listed redirect to home.
     { path: '**', component: HomeComponent }
 ];
+
 
 @NgModule({
   declarations: [],

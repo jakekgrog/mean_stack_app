@@ -26,6 +26,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/client/dist/'));
 app.use('/authentication', authentication);
 
+//on any get request, send our index.html
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + 'client/dist/index.html'));
 }).listen(8888, () => {
