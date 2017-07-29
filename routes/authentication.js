@@ -15,6 +15,7 @@ module.exports = (router) => {
                 if (!req.body.password) {
                     res.json({ success: false, message: 'You must provide a password' });
                 } else {
+                    console.log(req.body.phone);
                     let user = new User({
                         email: req.body.email.toLowerCase(),
                         username: req.body.username.toLowerCase(),
@@ -42,7 +43,7 @@ module.exports = (router) => {
                                 } else {
                                     res.json({ success: false, message: 'Could not save user. Error: ', err});
                                 }
-                            } 
+                            }
                         } else {
                             res.json({ success: true, message: 'User saved!' });
                         }
@@ -51,7 +52,7 @@ module.exports = (router) => {
                 }
             }
         }
-        
+
     });
 
     //Get user email
