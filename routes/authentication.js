@@ -15,11 +15,12 @@ module.exports = (router) => {
                 if (!req.body.password) {
                     res.json({ success: false, message: 'You must provide a password' });
                 } else {
-                    console.log(req.body.phone);
                     let user = new User({
                         email: req.body.email.toLowerCase(),
                         username: req.body.username.toLowerCase(),
                         password: req.body.password,
+                        phone: req.body.phone,
+
                     });
                     user.save((err) => {
                         if (err) {
@@ -141,7 +142,7 @@ module.exports = (router) => {
 
     //Profile route Authentication
     router.get('/profile', (req, res) => {
-        User.findOne({ _id: req.decoded.userId }).select('username email').exec((err, user) => {
+        User.findOne({ _id: req.decoded.userId }).select('username email phone').exec((err, user) => {
             if (err) {
                 res.json({ success: false, message: err });
             } else {
