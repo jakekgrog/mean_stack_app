@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profileedit',
@@ -11,10 +12,14 @@ export class ProfileeditComponent implements OnInit {
   username;
   email;
   phone;
+  form: FormGroup;
 
   constructor(
-    private authService: AuthService
-  ) {}
+    private authService: AuthService,
+    private formBuilder: FormBuilder
+  ) {
+    this.createForm();
+  }
 
   //get our current profile data pre change
   ngOnInit() {
@@ -25,4 +30,16 @@ export class ProfileeditComponent implements OnInit {
     })
   }
 
+  createForm() {
+    this.form = this.formBuilder.group({
+    newNumber: ['']
+    })
+}
+
+  onEditSubmit() {
+    this.authService.updateUser().subscribe(data => {
+      console.log(data)
+    })
+    console.log(this.form.get('newNumber').value);
+  }
 }

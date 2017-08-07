@@ -7,3 +7,13 @@
   <li class="list-group-item">Email: {{ email }}</li>
   <li class="list-group-item">Phone Number: {{ phone }}</li>
 </ul>
+
+<form [formGroup]="form" (submit)="onEditSubmit()" >
+    <div class="form-group">
+        <label for="newNumber">New Phone Number</label>
+            <input type="text" name="newNumber" class="form-control" autocomplete="off" placeholder="*phone number"  formControlName="newNumber">
+    </div>
+
+    <input type="submit" class="btn btn-success" value="Update" >
+
+</form>

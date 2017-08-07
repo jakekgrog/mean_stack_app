@@ -155,5 +155,11 @@ module.exports = (router) => {
         })
     });
 
+
+
+    router.post('/profile/edit',(req,res) => {
+      console.log(req.decoded.userId);
+    });
+
     return router;
 }
