@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { ListingComponent } from './components/listing/listing.component';
 
 //Services
 import { AuthService } from './services/auth.service';
@@ -28,7 +29,8 @@ import { NotAuthGuard } from './guards/notAuth.guard';
     DashboardComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    ListingComponent
   ],
   imports: [
     BrowserModule,
