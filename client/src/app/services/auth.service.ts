@@ -69,9 +69,8 @@ export class AuthService {
   }
 
   updateUser() {
-    this.createAuthenticationHeaders();
     console.log(this.authToken);
-    return this.http.post(this.baseUrl + '/authentication/profile/edit', this.options).map(res => res.json());
+    return this.http.get(this.baseUrl + '/authentication/profile/edit', this.options).map(res => res.json());
   }
 
 }

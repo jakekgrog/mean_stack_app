@@ -140,7 +140,7 @@ module.exports = (router) => {
         }
     });
 
-    router.post('/profile/edit', (req, res) => {
+    router.get('/profile/edit', (req, res) => {
         res.json({ success: true, message: req.decoded.userId });
     });
 
