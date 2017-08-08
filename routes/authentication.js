@@ -140,6 +140,13 @@ module.exports = (router) => {
         }
     });
 
+    router.post('/profile/edit', (req, res) => {
+        res.json({ success: true, message: req.decoded.userId });
+    });
+
+
+
+
     //Profile route Authentication
     router.get('/profile', (req, res) => {
         User.findOne({ _id: req.decoded.userId }).select('username email phone').exec((err, user) => {
@@ -155,11 +162,6 @@ module.exports = (router) => {
         })
     });
 
-
-
-    router.post('/profile/edit',(req,res) => {
-      console.log(req.decoded.userId);
-    });
 
     return router;
 }

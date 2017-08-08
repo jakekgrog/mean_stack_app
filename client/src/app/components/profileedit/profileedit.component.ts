@@ -38,7 +38,7 @@ export class ProfileeditComponent implements OnInit {
 
   onEditSubmit() {
     this.authService.updateUser().subscribe(data => {
-      console.log(data)
+      console.log(data.message)
     })
     console.log(this.form.get('newNumber').value);
   }
