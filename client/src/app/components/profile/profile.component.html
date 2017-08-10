@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="panel-left">
+        <img class="profilepic" src="{{'https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg'}}" />
+        
+        <div *ngIf="uploading" class="progress">
+          <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+          </div>
+        </div>
+        
+        <form [formGroup]="imageUpload">
+          <label class="btn btn-default">Choose Image</label>
+          <input type="file" name="myfile" [disabled]="uploading" style="display: none;" />
+          <button class="btn btn-default" [disabled]="uploading">Upload</button>
+        </form>
+
+        <br>
+
+        
+
+        <br>
+
+        <div ng-show="message">
+          <div class="alert">{{ message }}</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="col-sm-9">
+      <div class="panel-right">
+        <h1>Edit Profile</h1>
+      </div>
+    </div>
+
+  </div>
+</div>
