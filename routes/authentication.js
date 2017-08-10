@@ -140,16 +140,32 @@ module.exports = (router) => {
         }
     });
 
-    router.get('/profile/edit', (req, res) => {
-        res.json({ success: true, message: req.decoded.userId });
-    });
+
+/* Profile edit authentication.
+Uses findOneAndUpdate to find the user using the decoded userId.
+Updates it to the values supplied in the user object (created from the values supplied in the angular component).
+Responds with success/fail json.
+*/
+    router.post('/profile/edit', (req, res) => {
+        const user = req.body;
+        User.findOneAndUpdate({ _id: req.decoded.userId}, 
+            {$set: {"phone": user.phone, "website": user.website, "bio": user.bio}}, function(err,user) {
+            if (err) {
+                throw err;
+                res.json({success: false, message: "Couldn't find user."});
+            }
+            else {
+                res.json({success: true, message: "User updated!"});
+            }
+        });
+    }); 
 
 
 
 
     //Profile route Authentication
     router.get('/profile', (req, res) => {
-        User.findOne({ _id: req.decoded.userId }).select('username email phone').exec((err, user) => {
+        User.findOne({ _id: req.decoded.userId }).select('username email phone website bio').exec((err, user) => {
             if (err) {
                 res.json({ success: false, message: err });
             } else {
