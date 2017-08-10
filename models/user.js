@@ -95,12 +95,14 @@ const passwordValidators = [
     }
 ];
 
+//defines a user model
 const userSchema = new Schema({
     email: { type: String, required: true, unique: true, lowercase: true, validate: emailValidators },
     username: { type: String, required: true, unique: true, lowercase: true, validate: usernameValidators },
     password: { type: String, required: true, validate: passwordValidators }
 });
 
+//Hashes password before saving to database.
 userSchema.pre('save', function(next) {
     if (!this.isModified('password'))
         return next();
@@ -112,7 +114,7 @@ userSchema.pre('save', function(next) {
     });
 });
 
-userSchema.methods.comparePassword = (password) => {
+userSchema.methods.comparePassword = function(password) {
     return bcrypt.compareSync(password, this.password);
 };
 
