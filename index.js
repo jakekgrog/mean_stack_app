@@ -4,6 +4,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const config = require('./config/database');
 const authentication = require('./routes/authentication')(router);
+const listings = require('./routes/listing')(router);
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -25,6 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/client/dist/'));
 app.use('/authentication', authentication);
+app.use('/listings', listings);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + 'client/dist/index.html'));

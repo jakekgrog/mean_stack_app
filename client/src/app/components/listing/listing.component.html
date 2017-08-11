@@ -1,11 +1,80 @@
 <h1 class="page-header">Listing Feed</h1>
 
-<div class="row show-hide-message">
+<div *ngIf="message" class="row show-hide-message">
   <div [ngClass]="messageClass">
     {{ message }}
   </div>
 </div>
 
 
-<button type="button" name="button" class="btn btn-warning">New Listing</button>
-<button type="button" name="button" class="btn btn-default"><span class="glyphicon glyphicon-refresh" ></span> Refresh</button>
+<button type="button" name="button" class="btn btn-warning" *ngIf="!newListing" (click)="newListingForm()">New Listing</button>
+<button [disabled]="loadingListings" type="button" name="button" class="btn btn-default" *ngIf="!newListing" (click)="reloadListings()"><span class="glyphicon glyphicon-repeat" ></span>&nbsp;&nbsp;Refresh</button>
+<br><br>
+
+<!-- New Listing Form -->
+<form *ngIf="newListing" [formGroup]="form" name="listingForm" (submit)="onListingSubmit()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <div [ngClass]="{ 'has-success': form.controls.title.valid, 'has-errors': !form.controls.title.dirty && !form.controls.title.errors }">
+      <input type="text" name="title" class="form-control" placeholder="Listing Title" autocomplete="off" formControlName="title">
+      <ul class="help-block">
+        <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.required" >This field is required</li>
+        <li *ngIf="(form.controls.title.dirty && form.controls.title.errors?.minlength) || (form.controls.title.dirty && form.controls.title.errors?.maxlength)" >Max lenght: 80 characters, Min length: 5</li>
+        <li *ngIf="form.controls.title.dirty && form.controls.title.errors?.alphaNumericValidation">Title may only consist of letters and numbers</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="body">Body</label>
+    <div [ngClass]="{ 'has-success': form.controls.body.valid, 'has-errors': !form.controls.body.dirty && !form.controls.body.errors }">
+      <textarea name="body" cols="80" rows="8" placeholder="Describe your listing" class="form-control" formControlName="body"></textarea>
+      <ul class="help-block">
+        <li *ngIf="form.controls.body.dirty && form.controls.body.errors?.required" >This field is required</li>
+        <li *ngIf="(form.controls.body.dirty && form.controls.body.errors?.minlength) || (form.controls.body.dirty && form.controls.body.errors?.maxlength)" >Body may not exceed 5000 characters.</li>
+      </ul>
+    </div>
+  </div>
+
+  <button [disabled]="processing || !form.valid" type="submit" name="button" class="btn btn-success">Create Listing</button>
+  <button [disabled]="processing" type="button" name="button" (click)="goBack()" class="btn btn-warning">Go Back</button>
+</form>
+<!-- New Listing Form -->
+
+
+
+<div>
+  <div *ngIf="!newListing" class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Graphic Design, <span class="badge"><span class="glyphicon glyphicon-map-marker"></span> Dublin, Ireland</span></h3>
+    </div>
+    <div class="panel-body">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati inventore reiciendis magni excepturi quidem labore vitae hic accusantium, voluptatibus pariatur maiores voluptas officiis, eaque repellat quo ab. Iusto illo, vel.
+    </div>
+    <div class="panel-footer">
+      <p><strong>Posted by:</strong> jakegrogan</p>
+      <p><strong>Date: </strong>June 23, 2017</p>
+      <div>
+        <p><strong>Rating: </strong> 10/10</p>
+        <p><strong>Reviews: </strong>5</p>
+      </div>
+      <a href="#"><button type="button" name="button" class="btn btn-sm btn-info" >Edit</button></a>
+      <a href="#"><button type="button" name="button" class="btn btn-sm btn-danger" >Delete</button></a>
+      <div class="dropdown">
+        <button type="button" name="button" class="btn btn-sm btn-success" >
+          <span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Reviews: 5
+        </button>
+        <div class="dropdown-content">
+          <a href="#"><strong>john123</strong>: 5 Stars</a>
+          <a href="#"><strong>john123</strong>: 4 Stars</a>
+          <a href="#"><strong>john123</strong>: 5 Stars</a>
+          <a href="#"><strong>john123</strong>: 5 Stars</a>
+          <a href="#"><strong>john123</strong>: 4 Stars</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<hr>
+

@@ -16,6 +16,7 @@ import { ListingComponent } from './components/listing/listing.component';
 
 //Services
 import { AuthService } from './services/auth.service';
+import { ListingService } from './services/listing.service';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -39,7 +40,7 @@ import { NotAuthGuard } from './guards/notAuth.guard';
     AppRoutingModule,
     FlashMessagesModule,
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard],
+  providers: [AuthService, ListingService, AuthGuard, NotAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,7 +10,7 @@ let emailLengthChecker = (email) => {
         if (email.length < 5 || email.length > 30) {
             return false;
         } else {
-            return true
+            return true;
         }
     }
 };
@@ -40,6 +40,8 @@ let usernameLengthChecker = (username) => {
         return false;
     } else {
         if (username.length < 3 || username.length > 15) {
+            return false;
+        } else {
             return true;
         }
     }
@@ -70,6 +72,8 @@ let passwordLengthChecker = (password) => {
         return false;
     } else {
         if (password.length < 8 || password.length > 35) {
+            return false;
+        } else {
             return true;
         }
     }
