@@ -107,7 +107,7 @@ const phoneValidators = [
         message: 'Phone number must be no more than 10 digits.'
     }
 ]
-/*
+
 let bioLengthChecker = (bio) => {
     return bio.length < 300;
 }
@@ -129,15 +129,15 @@ const websiteValidators = [
         message: "Your website must be shorter than 30 characters."
     }
 ]
-*/
+
 //defines a user model
 const userSchema = new Schema({
     email: { type: String, required: true, unique: true, lowercase: true, validate: emailValidators },
     username: { type: String, required: true, unique: true, lowercase: true, validate: usernameValidators },
     password: { type: String, required: true, validate: passwordValidators },
     phone: {type:String, required:false, default:''},
-    website: {type:String, required:false, default:'1'},
-    bio: {type:String, required:false, default:'2'}
+    website: {type:String, required:false, default:''},
+    bio: {type:String, required:false, default:''}
 });
 
 //Hashes password before saving to database.

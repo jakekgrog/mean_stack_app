@@ -38,6 +38,7 @@ export class ProfileeditComponent implements OnInit {
     })
   }
 
+  //Create our form with it's validators.
   createForm() {
     this.form = this.formBuilder.group({
     newNumber: ['', Validators.compose([
@@ -57,6 +58,7 @@ export class ProfileeditComponent implements OnInit {
     })
 }
 
+//Valid phone is 0-10 Digits only.
   validatePhone(controls) {
     const regex = /^\d{0,10}$/;
     if(regex.test(controls.value)) {
@@ -68,6 +70,7 @@ export class ProfileeditComponent implements OnInit {
 
   }
 
+//Valid bio is anything under 300 characters.
   validateBio(controls) {
     if(controls.value.length < 300) {
       return null;
@@ -77,7 +80,7 @@ export class ProfileeditComponent implements OnInit {
       return {'validateBio': true}
     }
   }
-
+//Valid Website is anything < 30 characters.
   validateWebsite(controls) {
     if(controls.value.length < 30) {
       return null;
@@ -101,7 +104,7 @@ export class ProfileeditComponent implements OnInit {
       website: this.newWebsite
       
     }
-
+//Pass user model to updateUser() and listen for return data.
     this.authService.updateUser(user).subscribe(data => {
       console.log(data)
     });
