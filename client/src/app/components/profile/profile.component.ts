@@ -12,6 +12,9 @@ export class ProfileComponent implements OnInit {
   username;
   email;
   phone;
+  website;
+  bio;
+
 
   constructor(
     private authService: AuthService,
@@ -23,6 +26,8 @@ export class ProfileComponent implements OnInit {
       this.username = profile.user.username;
       this.email = profile.user.email;
       this.phone = profile.user.phone;
+      this.website = profile.user.website;
+      this.bio = profile.user.bio;
     })
   }
 

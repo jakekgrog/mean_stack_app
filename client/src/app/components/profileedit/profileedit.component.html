@@ -1,6 +1,6 @@
 <h2 class="page-header">Profile Edit Page</h2>
 
-<h1> Current Values: </h1>
+<h4 class="display-3">Current Details:</h4>
 
 <ul class="list-group">
   <li class="list-group-item">Username: {{ username }}</li>
@@ -13,7 +13,7 @@
 <form [formGroup]="form" (submit)="onEditSubmit()" >
     <div class="form-group">
  
-        <label for="newNumber">New Phone Number</label>
+        <label for="newNumber"><span class="label label-default">New Phone Number</span></label>
         <div [ngClass]="{'has-error': (form.controls.newNumber.errors && form.controls.newNumber.dirty), 'has-success': !form.controls.newNumber.errors}">
             <input type="text" name="newNumber" class="form-control" autocomplete="off" placeholder="*phone number"  formControlName="newNumber">
             <ul class="help-block">
@@ -21,7 +21,7 @@
             </ul>
         </div>
 
-        <label for="newBio">New Bio</label>
+        <label for="newBio"><span class="label label-default">New Bio</span></label>
         <div [ngClass]="{'has-error': (form.controls.newBio.errors && form.controls.newBio.dirty), 'has-success': !form.controls.newBio.errors}">
             <input type="text" name="newBio" class="form-control" autocomplete="off" placeholder="*new bio"  formControlName="newBio">
             <ul class="help-block">
@@ -29,7 +29,7 @@
             </ul>
         </div>
 
-        <label for="newWebsite">New Website</label>
+        <label for="newWebsite"><span class="label label-default">New Website</span></label>
         <div [ngClass]="{'has-error': (form.controls.newWebsite.errors && form.controls.newWebsite.dirty), 'has-success': !form.controls.newWebsite.errors}">
             <input type="text" name="newWebsite" class="form-control" autocomplete="off" placeholder="*new website"  formControlName="newWebsite">
             <ul class="help-block">
