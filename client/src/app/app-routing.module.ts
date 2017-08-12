@@ -37,7 +37,7 @@ const appRoutes: Routes = [
     },
     {
         path: 'listing',
-        component: ListingComponent
+        component: ListingComponent,
     },
     { path: '**', component: HomeComponent }
 ];

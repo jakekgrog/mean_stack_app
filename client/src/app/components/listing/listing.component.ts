@@ -17,6 +17,8 @@ export class ListingComponent implements OnInit {
   form;
   processing: boolean = false;
   username;
+  loggedIn;
+  allListings;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -24,6 +26,8 @@ export class ListingComponent implements OnInit {
     private listingService: ListingService,
   ) {
     this.createNewListingFrom();
+    this.loggedIn = this.authService.loggedIn;
+    
    }
 
   createNewListingFrom() {
@@ -71,7 +75,7 @@ export class ListingComponent implements OnInit {
     //Get All Listings
     setTimeout(() => {
       this.loadingListings = false;
-    }, 4000);
+    }, 2000);
   }
 
   goBack(){
@@ -80,6 +84,12 @@ export class ListingComponent implements OnInit {
 
   draftComment() {
 
+  }
+
+  getListings() {
+    this.listingService.getAllListings().subscribe(listings => {
+      this.allListings = listings.listings;
+    });
   }
 
   onListingSubmit() {
@@ -101,6 +111,7 @@ export class ListingComponent implements OnInit {
       } else {
         this.messageClass = 'alert alert-success';
         this.message = data.message;
+        this.getListings();
         setTimeout(() => {
           this.newListing = false;
           this.processing = false;
@@ -116,7 +127,9 @@ export class ListingComponent implements OnInit {
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
       this.username = profile.user.username;
-    })
+    });
+
+    this.getListings();
   }
 
 }

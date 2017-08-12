@@ -5,8 +5,9 @@
             <h1 id="homeHeading">Welcome to Picklr</h1>
             <hr>
             <p>A platform for professional photographers.</p>
-            <a href="/register" class="btn btn-primary btn-xl page-scroll">Register</a>
-            <a href="#about" class="btn btn-default btn-xl page-scroll">Login</a>
+            <a *ngIf="!authService.loggedIn()" routerLink="/register" class="btn btn-primary btn-xl page-scroll">Register</a>
+            <a *ngIf="!authService.loggedIn()" routerLink="/login" class="btn btn-default btn-xl page-scroll">Login</a>
+            <a *ngIf="authService.loggedIn()" routerLink="/listing" class="btn btn-success btn-xl page-scroll">Browse</a>
         </div>
     </div>
 </header>

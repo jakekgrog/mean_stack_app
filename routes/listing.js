@@ -49,5 +49,19 @@ module.exports = (router) => {
         }
     });
 
+    router.get('/allListings', (req, res) =>{
+        Listing.find({}, (err, listings) => {
+            if (err) {
+                res.json({ success: false, message: err });
+            } else {
+                if (!listings) {
+                    res.json({ success: false, message: 'No Listings found.' });
+                } else {
+                    res.json({ success: true, listings: listings });
+                }
+            }
+        }).sort({ '_id': -1 });
+    })
+
     return router;
 };

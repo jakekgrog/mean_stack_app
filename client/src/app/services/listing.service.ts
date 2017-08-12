@@ -28,4 +28,9 @@ export class ListingService {
     return this.http.post(this.baseUrl + '/listings/newListing', listing, this.options).map(res => res.json());
   }
 
+  getAllListings() {
+    this.createAuthenticationHeaders();
+    return this.http.get(this.baseUrl + '/listings/allListings', this.options).map(res => res.json());
+  }
+
 }
