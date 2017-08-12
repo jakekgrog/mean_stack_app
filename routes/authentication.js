@@ -92,6 +92,21 @@ module.exports = (router) => {
         }
     });
 
+        router.get('/getUser/:username', (req,res) => {
+        User.findOne({username: req.params.username.toLowerCase()}, (err,user) => {
+            if (!req.params.username) {
+                res.json({success:false, message:"Username not provided."})
+            }
+            else if (err) {
+                res.json({success:false, message:"User does not exist."})
+            }
+            else {
+                res.json({success:true, user: user})
+            }
+        })
+        
+    });
+
     //Login Authentication
     router.post('/login', (req, res) => {
         if (!req.body.username) {
@@ -121,6 +136,7 @@ module.exports = (router) => {
             }
         }
     });
+
 
     router.use((req, res, next) => {
         const token = req.headers['authorization'];

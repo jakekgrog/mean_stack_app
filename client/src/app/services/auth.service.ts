@@ -64,6 +64,11 @@ export class AuthService {
     return this.http.get(this.baseUrl + '/authentication/profile', this.options).map(res => res.json());
   }
 
+  getUser(username) {
+    console.log(username);
+    return this.http.get(this.baseUrl + '/authentication/getUser' +  username).map(res => res.json());
+  }
+
   loggedIn() {
     return tokenNotExpired();
   }

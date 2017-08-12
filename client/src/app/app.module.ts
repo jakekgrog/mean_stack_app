@@ -19,6 +19,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
+import { PublicprofileComponent } from './components/publicprofile/publicprofile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NotAuthGuard } from './guards/notAuth.guard';
     DashboardComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    PublicprofileComponent
   ],
   imports: [
     BrowserModule,
