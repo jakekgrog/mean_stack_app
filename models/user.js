@@ -106,7 +106,7 @@ const userSchema = new Schema({
     password: { type: String, required: true, validate: passwordValidators }
 });
 
-//checks if password is hashed. If not, hash.
+//Hashes password before saving to database.
 userSchema.pre('save', function(next) {
     if (!this.isModified('password'))
         return next();
