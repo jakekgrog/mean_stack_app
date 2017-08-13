@@ -65,8 +65,7 @@ export class AuthService {
   }
 
   getUser(username) {
-    console.log(username);
-    return this.http.get(this.baseUrl + '/authentication/getUser' +  username).map(res => res.json());
+    return this.http.get(this.baseUrl + '/authentication/getUser/' +  username).map(res => res.json());
   }
 
   loggedIn() {
