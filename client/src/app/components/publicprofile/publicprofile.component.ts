@@ -10,11 +10,16 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class PublicprofileComponent implements OnInit {
 
+  usernamereq;
   username;
+
   email;
   message;
   messageClass;
   loggedIn;
+  phone;
+
+
 
   constructor(
     private router: Router,
@@ -24,16 +29,16 @@ export class PublicprofileComponent implements OnInit {
   {
 
     this.route.params.subscribe(params => {
-      this.username = params.username;
+      this.usernamereq = params.username;
     })
 
   } 
 
   ngOnInit() {
-    console.log(this.username);
-    this.authService.getUser(this.username).subscribe(data => {
+    this.authService.getUser(this.usernamereq).subscribe(data => {
       this.username = data.user.username;
       this.email = data.user.email;
+      this.phone = data.user.phone;
     });
     if (!this.authService.loggedIn()) {
       this.messageClass = "alert alert-danger";

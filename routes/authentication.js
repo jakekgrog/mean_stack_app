@@ -93,7 +93,8 @@ module.exports = (router) => {
     });
 
     router.get('/getUser/:username', (req,res) => {
-        User.findOne({username: req.params.username.toLowerCase()}).select('username email').exec( (err,user) => {
+        User.findOne({username: req.params.username.toLowerCase()}).select('username email phone').exec((err,user) => {
+
             if (!req.params.username) {
                 res.json({success:false, message:"Username not provided."})
             }
@@ -156,7 +157,7 @@ module.exports = (router) => {
 
     //Profile route Authentication
     router.get('/profile', (req, res) => {
-        User.findOne({ _id: req.decoded.userId }).select('username email').exec((err, user) => {
+        User.findOne({ _id: req.decoded.userId }).select('username email phone').exec((err, user) => {
             if (err) {
                 res.json({ success: false, message: err });
             } else {
