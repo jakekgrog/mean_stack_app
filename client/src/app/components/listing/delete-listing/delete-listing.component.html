@@ -1,0 +1,39 @@
+<h1 class="page-header">Delete Listing</h1>
+
+<div class="row show-hide-message" *ngIf="message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+
+<div class="col-md-6" *ngIf="foundListing">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" name="button" class="close" data-dismiss="modal" >
+        &times;
+      </button>
+      <h4 class="modal-title">Confirm</h4>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure want to delete this listing?</p>
+    </div>
+    <div class="modal-footer">
+      <button [disabled]="processing" type="button" name="button" class="btn btn-success" (click)="deleteListing()">Yes</button>
+      <a routerLink="/listing"><button [disabled]="processing" type="button" name="button" class="btn btn-danger">No</button></a>
+    </div>
+  </div>
+  <br>  
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">{{ listing.title }}</h3>
+      <div class="panel-body">
+        {{ listing.body }}
+      </div>
+      <div class="panel-footer">
+        <h5 style="color: black;"><strong>Posted by: </strong> {{ listing.createdBy }}</h5>
+        <br>
+        <h5 style="color: black;"><strong>Date: </strong> {{ listing.createdAt | date:'MMM dd, yyyy' }}</h5>
+      </div>
+    </div>
+  </div>
+</div>

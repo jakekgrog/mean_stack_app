@@ -7,7 +7,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ListingComponent } from './components/listing/listing.component';
+import { EditListingComponent } from './components/listing/edit-listing/edit-listing.component';
+import { DeleteListingComponent } from './components/listing/delete-listing/delete-listing.component';
 import { PublicprofileComponent } from './components/publicprofile/publicprofile.component';
+import { ViewListingComponent } from './components/listing/view-listing/view-listing.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
 
@@ -41,8 +44,23 @@ const appRoutes: Routes = [
         component: ListingComponent,
     },
     {
+        path: 'edit-listing/:id',
+        component: EditListingComponent,
+        canActivate: [AuthGuard],
+    },
+    {
         path: 'user/:username',
         component: PublicprofileComponent,
+    },
+    {
+        path: 'delete-listing/:id',
+        component: DeleteListingComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'view-listing/:id',
+        component: ViewListingComponent,
+        canActivate: [AuthGuard]
     },
     { path: '**', component: HomeComponent }
 ];

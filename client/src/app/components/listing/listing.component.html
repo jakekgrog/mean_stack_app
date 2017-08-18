@@ -62,15 +62,8 @@
       <a *ngIf="username === listing.createdBy" [routerLink]="['/edit-listing/', listing._id]"><button type="button" name="button" class="btn btn-sm btn-info" >Manage</button></a>
       <div class="dropdown">
         <button type="button" name="button" class="btn btn-sm btn-success" >
-          <span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Reviews: {{listing.reviews.length}}
+          <a style="text-decoration: none; color: white;" [routerLink]="['/view-listing/', listing._id]"><span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Reviews: {{listing.reviews.length}}</a>
         </button>
-        <div class="dropdown-content">
-          <a href="#"><strong>john123</strong>: 5 Stars</a>
-          <a href="#"><strong>john123</strong>: 4 Stars</a>
-          <a href="#"><strong>john123</strong>: 5 Stars</a>
-          <a href="#"><strong>john123</strong>: 5 Stars</a>
-          <a href="#"><strong>john123</strong>: 4 Stars</a>
-        </div>
       </div>
       
     </div>

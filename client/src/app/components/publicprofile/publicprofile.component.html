@@ -1,6 +1,13 @@
 <h2 class="page-header">Profile Page</h2>
 
-<ul class="list-group">
+<div *ngIf="message" class="row show-hide-message">
+  <div [ngClass]="messageClass">
+    {{ message }} <a routerLink="/login" class="btn btn-default btn-xl page-scroll">Sign In</a>
+  </div>
+</div>
+
+<ul class="list-group" *ngIf="authService.loggedIn()">
   <li class="list-group-item">Username: {{ username }}</li>
   <li class="list-group-item">Email: {{ email }}</li>
 </ul>
+

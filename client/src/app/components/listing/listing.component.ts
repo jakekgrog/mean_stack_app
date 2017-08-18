@@ -72,9 +72,10 @@ export class ListingComponent implements OnInit {
 
   reloadListings() {
     this.loadingListings = true;
-    //Get All Listings
+    
     setTimeout(() => {
       this.loadingListings = false;
+      this.getListings();
     }, 2000);
   }
 

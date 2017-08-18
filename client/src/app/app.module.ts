@@ -20,8 +20,12 @@ import { ListingService } from './services/listing.service';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
+import { FormsModule } from '@angular/forms';
 import { NotAuthGuard } from './guards/notAuth.guard';
 import { PublicprofileComponent } from './components/publicprofile/publicprofile.component';
+import { EditListingComponent } from './components/listing/edit-listing/edit-listing.component';
+import { DeleteListingComponent } from './components/listing/delete-listing/delete-listing.component';
+import { ViewListingComponent } from './components/listing/view-listing/view-listing.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,10 @@ import { PublicprofileComponent } from './components/publicprofile/publicprofile
     LoginComponent,
     ProfileComponent,
     ListingComponent,
-    PublicprofileComponent
+    PublicprofileComponent,
+    EditListingComponent,
+    DeleteListingComponent,
+    ViewListingComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +48,7 @@ import { PublicprofileComponent } from './components/publicprofile/publicprofile
     HttpModule,
     AppRoutingModule,
     FlashMessagesModule,
+    FormsModule,
   ],
   providers: [AuthService, ListingService, AuthGuard, NotAuthGuard],
   bootstrap: [AppComponent]

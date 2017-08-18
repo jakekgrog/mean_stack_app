@@ -12,6 +12,9 @@ export class PublicprofileComponent implements OnInit {
 
   username;
   email;
+  message;
+  messageClass;
+  loggedIn;
 
   constructor(
     private router: Router,
@@ -32,6 +35,13 @@ export class PublicprofileComponent implements OnInit {
       this.username = data.user.username;
       this.email = data.user.email;
     });
+    if (!this.authService.loggedIn()) {
+      this.messageClass = "alert alert-danger";
+      this.message = "You must be logged in to view this content!";
+    } else {
+      this.loggedIn = true;
+      
+    }
   }
 
 }
