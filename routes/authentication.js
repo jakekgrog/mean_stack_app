@@ -19,6 +19,8 @@ module.exports = (router) => {
                         email: req.body.email.toLowerCase(),
                         username: req.body.username.toLowerCase(),
                         password: req.body.password,
+                        phone: req.body.phone,
+
                     });
                     user.save((err) => {
                         if (err) {
@@ -42,7 +44,7 @@ module.exports = (router) => {
                                 } else {
                                     res.json({ success: false, message: 'Could not save user. Error: ', err});
                                 }
-                            } 
+                            }
                         } else {
                             res.json({ success: true, message: 'User saved!' });
                         }
@@ -51,7 +53,7 @@ module.exports = (router) => {
                 }
             }
         }
-        
+
     });
 
     //Get user email
@@ -138,9 +140,32 @@ module.exports = (router) => {
         }
     });
 
+
+/* Profile edit authentication.
+Uses findOneAndUpdate to find the user using the decoded userId.
+Updates it to the values supplied in the user object (created from the values supplied in the angular component).
+Responds with success/fail json.
+*/
+    router.post('/profile/edit', (req, res) => {
+        const user = req.body;
+        User.findOneAndUpdate({ _id: req.decoded.userId}, 
+            {$set: {"phone": user.phone, "website": user.website, "bio": user.bio}}, function(err,user) {
+            if (err) {
+                throw err;
+                res.json({success: false, message: "Couldn't find user."});
+            }
+            else {
+                res.json({success: true, message: "User updated!"});
+            }
+        });
+    }); 
+
+
+
+
     //Profile route Authentication
     router.get('/profile', (req, res) => {
-        User.findOne({ _id: req.decoded.userId }).select('username email').exec((err, user) => {
+        User.findOne({ _id: req.decoded.userId }).select('username email phone website bio').exec((err, user) => {
             if (err) {
                 res.json({ success: false, message: err });
             } else {
@@ -152,6 +177,7 @@ module.exports = (router) => {
             }
         })
     });
+
 
     return router;
 }

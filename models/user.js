@@ -95,11 +95,49 @@ const passwordValidators = [
     }
 ];
 
+
+let validPhoneChecker = (phone) => {
+    const regex = new RegExp(/^\d{0,10}$/);
+    return regex.test(phone);
+}
+
+const phoneValidators = [
+    {
+        validator: validPhoneChecker,
+        message: 'Phone number must be no more than 10 digits.'
+    }
+]
+
+let bioLengthChecker = (bio) => {
+    return bio.length < 300;
+}
+
+const bioValidators = [
+    {
+        validator: bioLengthChecker,
+        message: 'Your bio must be shorter than 300 characters!'
+    }
+]
+
+let websiteLengthChecker = (website) => {
+    return website.length < 30;
+}
+
+const websiteValidators = [
+    {
+        validator: websiteLengthChecker,
+        message: "Your website must be shorter than 30 characters."
+    }
+]
+
 //defines a user model
 const userSchema = new Schema({
     email: { type: String, required: true, unique: true, lowercase: true, validate: emailValidators },
     username: { type: String, required: true, unique: true, lowercase: true, validate: usernameValidators },
-    password: { type: String, required: true, validate: passwordValidators }
+    password: { type: String, required: true, validate: passwordValidators },
+    phone: {type:String, required:false, default:''},
+    website: {type:String, required:false, default:''},
+    bio: {type:String, required:false, default:''}
 });
 
 //Hashes password before saving to database.

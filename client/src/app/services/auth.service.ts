@@ -68,4 +68,9 @@ export class AuthService {
     return tokenNotExpired();
   }
 
+//Passes new user object & auth headers to authentication.js profile/edit
+  updateUser(user) {
+    return this.http.post(this.baseUrl + '/authentication/profile/edit',user, this.options).map(res => res.json());
+  }
+
 }
