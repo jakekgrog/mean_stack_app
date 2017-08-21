@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profileedit',
@@ -24,6 +25,7 @@ export class ProfileeditComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
+    private router: Router,
   ) {
     this.createForm();
   }
@@ -115,6 +117,9 @@ export class ProfileeditComponent implements OnInit {
       } else {
         this.messageClass = 'alert alert-success';
         this.message = data.message;
+        setTimeout(() => {
+          this.router.navigate(['/profile']);
+        },1000);
       }
     });
   }
