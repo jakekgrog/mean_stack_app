@@ -1,0 +1,44 @@
+<h2 class="page-header">Profile Edit Page</h2>
+
+<h4 class="display-3">Current Details:</h4>
+
+<ul class="list-group">
+  <li class="list-group-item">Username: {{ username }}</li>
+  <li class="list-group-item">Email: {{ email }}</li>
+  <li class="list-group-item">Phone Number: {{ phone }}</li>
+  <li class="list-group-item">Website: {{ website }}</li>
+  <li class="list-group-item">Bio: {{ bio }}</li>
+</ul>
+
+<form [formGroup]="form" (submit)="onEditSubmit()" >
+    <div class="form-group">
+ 
+        <label for="newNumber"><span class="label label-default">New Phone Number</span></label>
+        <div [ngClass]="{'has-error': (form.controls.newNumber.errors && form.controls.newNumber.dirty), 'has-success': !form.controls.newNumber.errors}">
+            <input type="text" name="newNumber" class="form-control" autocomplete="off" placeholder="*phone number"  formControlName="newNumber">
+            <ul class="help-block">
+                <li *ngIf="form.controls.newNumber.errors?.validatePhone && form.controls.newNumber.dirty">Phone Number must consist of numbers only and be less than 10 digits.</li>
+            </ul>
+        </div>
+
+        <label for="newBio"><span class="label label-default">New Bio</span></label>
+        <div [ngClass]="{'has-error': (form.controls.newBio.errors && form.controls.newBio.dirty), 'has-success': !form.controls.newBio.errors}">
+            <input type="text" name="newBio" class="form-control" autocomplete="off" placeholder="*new bio"  formControlName="newBio">
+            <ul class="help-block">
+                <li *ngIf="form.controls.newBio.errors?.validateBio && form.controls.newBio.dirty">Your Bio should be shorter than 300 characters, keep it simple!</li>
+            </ul>
+        </div>
+
+        <label for="newWebsite"><span class="label label-default">New Website</span></label>
+        <div [ngClass]="{'has-error': (form.controls.newWebsite.errors && form.controls.newWebsite.dirty), 'has-success': !form.controls.newWebsite.errors}">
+            <input type="text" name="newWebsite" class="form-control" autocomplete="off" placeholder="*new website"  formControlName="newWebsite">
+            <ul class="help-block">
+                <li *ngIf="form.controls.newWebsite.errors?.validateWebsite && form.controls.newWebsite.dirty">Your website should be shorter than 30 characters</li>
+            </ul>
+        </div> 
+
+    </div>
+
+    <input [disabled]="!form.valid" type="submit" class="btn btn-success" value="Update" >
+
+</form>

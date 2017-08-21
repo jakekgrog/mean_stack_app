@@ -52,7 +52,7 @@
       {{listing.body}}
     </div>
     <div class="panel-footer">
-      <p><strong>Posted by:</strong> {{listing.createdBy}}</p>
+      <p><strong>Posted by:</strong> <a href="/user/{{listing.createdBy}}"> {{listing.createdBy}}</a></p>
       <p><strong>Date: </strong>{{listing.createdAt | date: 'MMM dd, yyyy'}}</p>
       <div *ngIf="username === listing.createdBy">
         <p><strong>Rating: </strong> 80%</p>

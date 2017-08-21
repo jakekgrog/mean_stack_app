@@ -1,6 +1,15 @@
 <h2 class="page-header">Profile Page</h2>
+<div id="profileEditButton">
+<a *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]='{exact:true}' routerLink="/profile/edit" class="btn btn-info" role="button">Edit Profile</a>
+</div>
 
+<div id="profileInfo">
 <ul class="list-group">
   <li class="list-group-item">Username: {{ username }}</li>
   <li class="list-group-item">Email: {{ email }}</li>
+  <li class="list-group-item">Phone Number: {{ phone }}</li>
+  <li class="list-group-item">Bio: {{ bio }}</li>
+  <li class="list-group-item">Personal Website: {{ website }}</li>
+
 </ul>
+</div>

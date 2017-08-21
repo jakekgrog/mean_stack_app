@@ -11,12 +11,13 @@ import { EditListingComponent } from './components/listing/edit-listing/edit-lis
 import { DeleteListingComponent } from './components/listing/delete-listing/delete-listing.component';
 import { PublicprofileComponent } from './components/publicprofile/publicprofile.component';
 import { ViewListingComponent } from './components/listing/view-listing/view-listing.component';
+import { ProfileeditComponent} from './components/profileedit/profileedit.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
 
 const appRoutes: Routes = [
-    { 
-        path: '', 
+    {
+        path: '',
         component: HomeComponent
     },
     {
@@ -61,6 +62,11 @@ const appRoutes: Routes = [
         path: 'view-listing/:id',
         component: ViewListingComponent,
         canActivate: [AuthGuard]
+    },
+    {
+        path: 'profile/edit',
+        component: ProfileeditComponent,
+        canActivate: [AuthGuard],
     },
     { path: '**', component: HomeComponent }
 ];

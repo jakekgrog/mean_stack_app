@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
       private formBuilder: FormBuilder,
       private authService: AuthService,
       private router: Router,
-    ) { 
+    ) {
     this.createForm();
   }
 
@@ -51,7 +51,8 @@ export class RegisterComponent implements OnInit {
         Validators.maxLength(35),
         this.validatePassword
       ])],
-      confirm: ['', Validators.required]
+      confirm: ['', Validators.required],
+      phone: ''
     }, { validator: this.matchingPasswords('password', 'confirm')})
   }
 
@@ -60,6 +61,7 @@ export class RegisterComponent implements OnInit {
     this.form.controls['username'].disable();
     this.form.controls['password'].disable();
     this.form.controls['confirm'].disable();
+    this.form.controls['phone'].disable();
   }
 
   enableForm() {
@@ -67,6 +69,7 @@ export class RegisterComponent implements OnInit {
     this.form.controls['username'].enable();
     this.form.controls['password'].enable();
     this.form.controls['confirm'].enable();
+    this.form.controls['phone'].enable();
   }
 
   validateEmail(controls) {
@@ -112,7 +115,8 @@ export class RegisterComponent implements OnInit {
     const user = {
       email: this.form.get('email').value,
       username: this.form.get('username').value,
-      password: this.form.get('password').value
+      password: this.form.get('password').value,
+      phone: this.form.get('phone').value
     }
 
     this.authService.registerUser(user).subscribe(data => {
