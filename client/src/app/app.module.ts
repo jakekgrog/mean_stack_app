@@ -15,11 +15,17 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 
 //Services
 import { AuthService } from './services/auth.service';
+import { UploadService } from './services/upload.service';
+
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
+<<<<<<< HEAD
 import { ProfileeditComponent } from './components/profileedit/profileedit.component';
+=======
+import { FooterComponent } from './components/footer/footer.component';
+>>>>>>> 1e1af1df1fc8fa1ba86c791e9486a80f92f5a36e
 
 @NgModule({
   declarations: [
@@ -30,7 +36,11 @@ import { ProfileeditComponent } from './components/profileedit/profileedit.compo
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
+<<<<<<< HEAD
     ProfileeditComponent
+=======
+    FooterComponent
+>>>>>>> 1e1af1df1fc8fa1ba86c791e9486a80f92f5a36e
   ],
   imports: [
     BrowserModule,
@@ -39,7 +49,7 @@ import { ProfileeditComponent } from './components/profileedit/profileedit.compo
     AppRoutingModule,
     FlashMessagesModule,
   ],
-  providers: [AuthService, AuthGuard, NotAuthGuard],
+  providers: [AuthService, AuthGuard, NotAuthGuard, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
