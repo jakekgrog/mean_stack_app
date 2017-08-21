@@ -17,6 +17,8 @@ export class ProfileeditComponent implements OnInit {
   newPhNumber;
   newBio;
   newWebsite;
+  messageClass: string;
+  message: string;
   form: FormGroup;
 
   constructor(
@@ -107,6 +109,13 @@ export class ProfileeditComponent implements OnInit {
 //Pass user model to updateUser() and listen for return data.
     this.authService.updateUser(user).subscribe(data => {
       console.log(data)
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+      }
     });
   }
 
