@@ -141,7 +141,8 @@ const userSchema = new Schema({
     password: { type: String, required: true, validate: passwordValidators },
     phone: {type:String, required:false, default:''},
     website: {type:String, required:false, default:''},
-    bio: {type:String, required:false, default:''}
+    bio: {type:String, required:false, default:''},
+    isAdmin: {type: Number, required: false, default: 0 },
 });
 
 //Hashes password before saving to database.

@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
       } else {
         this.messageClass = 'alert alert-success';
         this.message = data.message;
-        this.authService.storeUserData(data.token, data.user);
+        this.authService.storeUserData(data.token, data.user, data.user.isAdmin);
         setTimeout(() => {
           if (this.previousUrl) {
             this.router.navigate([this.previousUrl]);

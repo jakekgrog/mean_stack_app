@@ -12,6 +12,8 @@ import { DeleteListingComponent } from './components/listing/delete-listing/dele
 import { PublicprofileComponent } from './components/publicprofile/publicprofile.component';
 import { ViewListingComponent } from './components/listing/view-listing/view-listing.component';
 import { ProfileeditComponent} from './components/profileedit/profileedit.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminGuard } from './guards/admin.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
 
@@ -67,6 +69,11 @@ const appRoutes: Routes = [
         path: 'profile/edit',
         component: ProfileeditComponent,
         canActivate: [AuthGuard],
+    },
+    {
+        path: 'security/admin',
+        component: AdminComponent,
+        canActivate: [AdminGuard],
     },
     { path: '**', component: HomeComponent }
 ];

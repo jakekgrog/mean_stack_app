@@ -120,7 +120,6 @@ export class ListingComponent implements OnInit {
           this.form.reset();
           this.enableNewListingForm();
         }, 2000);
-
       }
     })
   }

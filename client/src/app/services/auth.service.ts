@@ -52,7 +52,7 @@ export class AuthService {
     localStorage.clear();
   }
 
-  storeUserData(token, user) {
+  storeUserData(token, user, isAdmin) {
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
@@ -70,6 +70,15 @@ export class AuthService {
 
   loggedIn() {
     return tokenNotExpired();
+  }
+
+  isAdmin() {
+    this.createAuthenticationHeaders();
+    return this.http.get(this.baseUrl + '/authentication/checkAdmin', this.options).map(res => res.json());
+  }
+
+  checker() {
+    
   }
 
 //Passes new user object & auth headers to authentication.js profile/edit

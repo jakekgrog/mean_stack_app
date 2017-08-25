@@ -25,10 +25,13 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 //Services
 import { AuthService } from './services/auth.service';
+import { AdminService } from './services/admin.service';
 import { ListingService } from './services/listing.service';
 import { SearchService } from './services/search.service';
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import { NotAuthGuard } from './guards/notAuth.guard';
     EditListingComponent,
     DeleteListingComponent,
     ViewListingComponent,
-    ProfileeditComponent
+    ProfileeditComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,7 @@ import { NotAuthGuard } from './guards/notAuth.guard';
     FlashMessagesModule,
     FormsModule,
   ],
-  providers: [AuthService, ListingService, SearchService, AuthGuard, NotAuthGuard],
+  providers: [AuthService, ListingService, SearchService, AuthGuard, AdminGuard, NotAuthGuard, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

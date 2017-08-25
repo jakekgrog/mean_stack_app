@@ -94,6 +94,8 @@ module.exports = (router) => {
         }
     });
 
+    
+
     router.get('/getUser/:username', (req,res) => {
         User.findOne({username: req.params.username.toLowerCase()}).select('username email phone').exec((err,user) => {
 
@@ -131,7 +133,7 @@ module.exports = (router) => {
                             } else {
                                 const token = jwt.sign({ userId: user._id }, config.secret, { expiresIn: '24h'});
 
-                                res.json({ success: true, message: 'Successfully logged in', token: token, user: { username: user.username } });
+                                res.json({ success: true, message: 'Successfully logged in', token: token, user: { username: user.username, status: user.isAdmin } });
                             }
                         }
                     }
@@ -168,8 +170,7 @@ Responds with success/fail json.
         User.findOneAndUpdate({ _id: req.decoded.userId}, 
             {$set: {"phone": user.phone, "website": user.website, "bio": user.bio}}, function(err,user) {
             if (err) {
-                throw err;
-                res.json({success: false, message: "Couldn't find user."});
+                res.json({success: false, message: "Couldn't find user: " + err });
             }
             else {
                 res.json({success: true, message: "User updated!"});
@@ -178,6 +179,23 @@ Responds with success/fail json.
     }); 
 
 
+    router.get('/checkAdmin', (req, res) => {
+        User.findOne({ _id: req.decoded.userId }, (err, user) => {
+            if (err) {
+                res.json({ success: false, message: err });
+            } else {
+                if (!user) {
+                    res.json({ succees: false, message: 'Could not find user' });
+                } else {
+                    if (user.isAdmin !== 1) {
+                        res.json({ success: false, message: 'not allowed' });
+                    } else {
+                        res.json({ success: true, message: 'Is Admin' });
+                    }
+                }
+            }
+        });
+    });
 
 
     //Profile route Authentication
