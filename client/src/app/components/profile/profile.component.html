@@ -1,20 +1,5 @@
-<<<<<<< HEAD
 <h2 class="page-header">Profile Page</h2>
-<div id="profileEditButton">
-<a *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]='{exact:true}' routerLink="/profile/edit" class="btn btn-info" role="button">Edit Profile</a>
-</div>
 
-<div id="profileInfo">
-<ul class="list-group">
-  <li class="list-group-item">Username: {{ username }}</li>
-  <li class="list-group-item">Email: {{ email }}</li>
-  <li class="list-group-item">Phone Number: {{ phone }}</li>
-  <li class="list-group-item">Bio: {{ bio }}</li>
-  <li class="list-group-item">Personal Website: {{ website }}</li>
-
-</ul>
-</div>
-=======
 <div class="container">
   <div class="row">
     <div class="col-sm-3">
@@ -47,10 +32,21 @@
 
     <div class="col-sm-9">
       <div class="panel-right">
-        <h1>Edit Profile</h1>
+        <a *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]='{exact:true}' routerLink="/profile/edit" class="btn btn-info" role="button">Edit Profile</a>
+        <br><br>
+      <div id="profileInfo">
+    <ul class="list-group">
+      <li class="list-group-item">Username: {{ username }}</li>
+      <li class="list-group-item">Email: {{ email }}</li>
+      <li class="list-group-item">Phone Number: {{ phone }}</li>
+      <li class="list-group-item">Bio: {{ bio }}</li>
+      <li class="list-group-item">Personal Website: {{ website }}</li>
+    </ul>
+      </div>
       </div>
     </div>
 
-  </div>
+
 </div>
->>>>>>> 1e1af1df1fc8fa1ba86c791e9486a80f92f5a36e
+
+
