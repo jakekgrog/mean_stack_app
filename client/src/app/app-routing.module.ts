@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileeditComponent} from './components/profileedit/profileedit.component';
+import { PublicprofileComponent } from './components/publicprofile/publicprofile.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
 
@@ -39,7 +40,10 @@ const appRoutes: Routes = [
         path: 'profile/edit',
         component: ProfileeditComponent,
         canActivate: [AuthGuard],
-
+    },
+    {
+        path: 'user/:username',
+        component: PublicprofileComponent,
     },
     { path: '**', component: HomeComponent }
 ];
