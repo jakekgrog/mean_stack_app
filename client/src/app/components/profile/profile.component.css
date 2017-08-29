@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-#profileEditButton {
-  float:right;
-}
-
 #profileInfo {
   display:inline-block;
-=======
+}
+
 .panel-left{
     width: 100%;
     height: 100%;
@@ -29,5 +25,4 @@ h1{
 .profilepic {
     height: 100%;
     width: 100%;
->>>>>>> 1e1af1df1fc8fa1ba86c791e9486a80f92f5a36e
 }
