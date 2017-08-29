@@ -1,7 +1,8 @@
 <h2 class="page-header">Profile Page</h2>
 
 <p *ngIf="!authService.loggedIn()" class="alert alert-danger">You're not logged in, you must log in to view User contact info.</p>
-<ul class="list-group">
+<img *ngIf="authService.loggedIn()" src="{{avatar}}" style="width:200px; height:200px;"><br><br>
+<ul *ngIf="authService.loggedIn()" class="list-group">
   <li class="list-group-item">Username: {{ username }}</li>
   <li *ngIf="authService.loggedIn()" class="list-group-item">Email: {{ email }}</li>
   <li *ngIf="authService.loggedIn()" class="list-group-item">Phone: {{ phone }}</li>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-profileedit',
@@ -18,6 +19,8 @@ export class ProfileeditComponent implements OnInit {
   newBio;
   newWebsite;
   form: FormGroup;
+  image: String;
+  imageData;
 
   constructor(
     private authService: AuthService,
@@ -101,6 +104,7 @@ export class ProfileeditComponent implements OnInit {
       email: this.email,
       phone: this.newPhNumber,
       bio: this.newBio,
+      avatar: this.image,
       website: this.newWebsite
       
     }
@@ -108,6 +112,27 @@ export class ProfileeditComponent implements OnInit {
     this.authService.updateUser(user).subscribe(data => {
       console.log(data)
     });
+  }
+
+  saveImageToFile(e) {
+
+    var preview = document.querySelector('img');
+    var file    = e.srcElement.files[0];
+    console.log(file);
+    var reader  = new FileReader();
+
+    reader.addEventListener("load", function () {
+      preview.src = reader.result;
+    }, false);
+
+    setTimeout(() => {
+      this.image = preview.src;
+      console.log(this.image);
+    }, 2000);
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   }
 
 }

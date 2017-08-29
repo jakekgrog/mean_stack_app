@@ -12,6 +12,12 @@
 
 <form [formGroup]="form" (submit)="onEditSubmit()" >
     <div class="form-group">
+
+            <label for="newAvatar"><span class="label label-default">New Avatar</span></label>
+            <input type="file" name="image" (change)="saveImageToFile($event)" accept="image/*" #input required>
+            <img id="img" name="preview" src="" height="200" alt="Image preview..." #img class="img">
+
+        <br><br>
  
         <label for="newNumber"><span class="label label-default">New Phone Number</span></label>
         <div [ngClass]="{'has-error': (form.controls.newNumber.errors && form.controls.newNumber.dirty), 'has-success': !form.controls.newNumber.errors}">

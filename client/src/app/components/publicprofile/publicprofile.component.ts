@@ -18,6 +18,7 @@ export class PublicprofileComponent implements OnInit {
   messageClass;
   loggedIn;
   phone;
+  avatar;
 
 
 
@@ -39,6 +40,7 @@ export class PublicprofileComponent implements OnInit {
       this.username = data.user.username;
       this.email = data.user.email;
       this.phone = data.user.phone;
+      this.avatar = data.user.avatar;
     });
     if (!this.authService.loggedIn()) {
       this.messageClass = "alert alert-danger";

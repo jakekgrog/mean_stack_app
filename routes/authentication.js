@@ -97,7 +97,7 @@ module.exports = (router) => {
     
 
     router.get('/getUser/:username', (req,res) => {
-        User.findOne({username: req.params.username.toLowerCase()}).select('username email phone').exec((err,user) => {
+        User.findOne({username: req.params.username.toLowerCase()}).select('username email phone avatar').exec((err,user) => {
 
             if (!req.params.username) {
                 res.json({success:false, message:"Username not provided."})
@@ -168,7 +168,7 @@ Responds with success/fail json.
     router.post('/profile/edit', (req, res) => {
         const user = req.body;
         User.findOneAndUpdate({ _id: req.decoded.userId}, 
-            {$set: {"phone": user.phone, "website": user.website, "bio": user.bio}}, function(err,user) {
+            {$set: {"phone": user.phone, "website": user.website, "bio": user.bio, "avatar": user.avatar}}, function(err,user) {
             if (err) {
                 res.json({success: false, message: "Couldn't find user: " + err });
             }
